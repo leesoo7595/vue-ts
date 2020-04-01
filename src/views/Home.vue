@@ -1,10 +1,10 @@
 <template>
     <div class="home">
         <img src="../assets/logo.png" alt="Vue logo">
-        <Children :parentMessage="message"></Children>
-        <button @click="changeMessage">
-            메세지를 바꿔줄게요.
-        </button>
+        <Children @counter="counter"></Children>
+        <p>
+            부모에서 숫자를 보여준다. : {{count}}
+        </p>
     </div>
 </template>
 
@@ -18,10 +18,10 @@
         },
     })
     export default class Home extends Vue {
-        message: string = 'hello world';
+        count: number = 0;
 
-        changeMessage() {
-            this.message = 'change';
+        counter() {
+            this.count++;
         }
     }
 </script>
