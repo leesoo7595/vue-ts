@@ -1,22 +1,27 @@
 <template>
     <div class="home">
         <img src="../assets/logo.png" alt="Vue logo">
-        <Children></Children>
+        <Checkbox v-model="checked"></Checkbox>
+        {{text}}
     </div>
 </template>
 
 <script lang="ts">
     import { Vue, Component, Provide } from 'vue-property-decorator';
-    import Children from '@/components/Children.vue';
+    import Checkbox from '@/components/Checkbox.vue';
 
     @Component({
         components: {
-            Children,
+            Checkbox
         },
     })
     export default class Home extends Vue {
-        
-        @Provide('message') msg: string = 'provide/inject example';
-        
+        checked: boolean = false;
+        text: string = '동의하지 않습니다.';
+
+        change(checked: boolean) {
+            this.checked = checked;
+            this.text = checked ? '동의합니다.' : '동의하지 않습니다.'
+        }
     }
 </script>
