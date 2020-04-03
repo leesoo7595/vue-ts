@@ -1,21 +1,28 @@
 <template>
   <div id="app">
-    <toggle-btn/>
-    <dropdown/>
+    <Counter />
+    <button @click="increase">+</button>
+    <button @click="decrease">-</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import toggleBtn from '@/components/Accordion.vue';
-import dropdown from '@/components/Dropdown.vue';
+import Counter from '@/components/Counter.vue';
+
 @Component({
   components: {
-    dropdown,
-    toggleBtn,
+    Counter
   },
 })
 export default class App extends Vue {
+  increase() {
+    this.$store.dispatch("increase");
+  }
+
+  decrease() {
+    this.$store.dispatch("decrease");
+  }
 }
 </script>
 
