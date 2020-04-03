@@ -29,4 +29,4 @@ const store: StoreOptions<State> = {
   },
 }
 
-export default store;
+export default new Vuex.Store(store);
