@@ -8,25 +8,7 @@ interface State {
 }
 
 const store: StoreOptions<State> = {
-  state: {
-    count: 0,
-  },
-  mutations: {
-    setCount(state, count: number) {
-      state.count = count;
-    }
-  },
-  actions: {
-    increase({state, commit}: ActionContext<State, State>) {
-      commit('setCount', state.count + 1);
-    },
-    decrease({state, commit}: ActionContext<State, State>) {
-      commit('setCount', state.count - 1);
-    }
-  },
-  getters: {
-    count: (state: State) => state.count,
-  },
+  
 };
 
 export default new Vuex.Store(store);
