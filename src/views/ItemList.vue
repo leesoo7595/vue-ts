@@ -18,18 +18,22 @@ import {mapGetters} from  'vuex';
       'allTodoList',
       'activeTodoList',
       'clearTodoList',
-    ])
-  }
+    ]),
+  },
 })
 export default class ItemList extends Vue {
 
-  renderList: any[] = this.allTodoList;
+  renderList: any[] = [];
+  private clearTodoList!: any[];
+  private activeTodoList!: any[];
+  private allTodoList!: any[];
 
   created() {
-    this.initRenderList(this.$route.params.status);
+    this.$store.dispatch('initData');
+
   }
 
-  initRenderList(status: 'active' | 'clear') {
+  initRenderList(status: string) {
     if (!status) {
       this.renderList = this.allTodoList;
     } else if (status === 'active') {
@@ -39,14 +43,15 @@ export default class ItemList extends Vue {
     }
   }
 
-  @Watch("$route.params.status")
+  @Watch('$route.params.status')
   routeUpdate(newValue: 'active' | 'clear') {
     this.initRenderList(newValue);
   }
 
   @Watch('$store.state.todoList', {deep: true})
-  routeUpdate() {
-    this.initRenderList(this.$route.params.status);
+  stateUpdate() {
+    const status: string = this.$route.params.status;
+    this.initRenderList(status);
   }
 }
 </script>

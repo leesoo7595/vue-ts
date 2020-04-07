@@ -16,12 +16,12 @@
 import {Component, Vue, Prop} from 'vue-property-decorator';
 
 @Component
-export default class Item extends Vue{
+export default class Item extends Vue {
   @Prop() readonly id!: string;
   @Prop() readonly title!: string;
   @Prop() readonly status!: 'active' | 'clear';
   changeStatus($event: Event) {
-    const checked: boolean = $event.target.checked;
+    const checked: boolean = ($event.target as HTMLInputElement).checked;
 
     if (checked) {
       this.$store.commit('changeStatus', {id: this.id, status: 'clear'});
@@ -31,7 +31,7 @@ export default class Item extends Vue{
   }
 
   removeItem() {
-    this.$store.commit('removeItem', {id: this.id, })
+    this.$store.commit('removeItem', {id: this.id });
   }
 }
 </script>

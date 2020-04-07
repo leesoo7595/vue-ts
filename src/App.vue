@@ -18,7 +18,7 @@ import ItemInput from '@/components/ItemInput.vue';
   },
 })
 export default class App extends Vue {
-  
+
 }
 </script>
 
